@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title> Bibliography Gen</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  </head>
+  <body>
+    <header>Welcome to the Bibliography Management System</header>
+    <form action="#" th:action="@{/citation}" th:object="${citation}" method="post">
+      <p>author: <input type="text" th:field="*{author}"/></p>
+      <p>title: <input type="text" th:field="*{title}"/></p>
+      <p>year: <input type="text" th:field="*{year}"/></p>
+      <p>journal: <input type="text" th:field="*{journal}"/></p>
+      <p><input type="submit" value="Submit" /><input type="reset" value = "Reset"/></p>
+    </form>
+  </body>
+</html>
