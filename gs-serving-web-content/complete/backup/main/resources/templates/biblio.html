@@ -12,8 +12,9 @@
 
 <p>Bibliography</p>
 <ol>
-    <li th:each="ent : ${entries}" 
-    th:text="${ent.author}+', '+${ent.title}+', '+${ent.journal}+', '+${ent.year}+'.'"></li>
+    <li>Vladimir N. Vapnik, An Overview of Statistical Learning Theory, 1999, IEEE Transactions on Neural Networks</li>
+    <li>David Silver, Aja Huang, et al, Mastering the game of Go with deep neural networks and tree search, 2016, Nature</li>
+    <li th:text="'newly added ' + ${title} "></li>
 </ol>
 
 </body>
