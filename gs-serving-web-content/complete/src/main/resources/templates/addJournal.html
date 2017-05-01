@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h3>Journal Bibliography management system</h3>
+<form action="/addJournal">
+  authorFirstName <input type="text" authorFN="Author First Name"/><br/>
+  authorLastName <input type="text" authorLN="Author Last Name"/><br/>
+  articleTitle <input type="text" article="Article"/><br/>
+  volume<input type="text" volume="Volume"/><br/>
+  journalTitle<input type="text" journal="Journal"/><br/>
+  issue<input type="text" issue="Issue"/><br/>
+  publishingYear<input type="text" year="Year of Publication"/><br/>
+  startPage<input type="text" start="Starting Page"/><br/>
+  endPage<input type="text" end="Ending Page"/><br/>
+  database<input type="text" database="Database"/><br/>
+  accessDate<input type="text" date="Access Date"/><br/>
+  <input type="submit" value="Add"/>
+</form> 
+
+<p>Journal Bibliography</p>
+<ol>
+    <li th:each="ent : ${entries}" 
+    th:text="${ent.Author Last Name}+', '+${ent.Author First Name}+'. \'+${ent.Article}+\. '+${ent.Journal}+'. '+${ent.Volume}+'. '+${ent.Issue}+' ('+${ent.Year of Publication}+'): '+${ent.Starting Page}+'-'+${ent.Ending Page}+'. '+${ent.Database}+'. Web. '+${ent.Access Date}+'.'"></li>
+</ol>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h3>Website Bibliography management system</h3>
+<form action="/addWebsite">
+  authorFirstName <input type="text" authorFN="Author First Name"/><br/>
+  authorLastName <input type="text" authorLN="Author Last Name"/><br/>
+  articleTitle <input type="text" article="Article"/><br/>
+  websiteTitle<input type="text" website="Website"/><br/>
+  publisher<input type="text" publisher="Publisher"/><br/>
+  url<input type="text" url="URL"/><br/>
+  publishingDate<input type="text" pDate="Date of Publication"/><br/>
+  accessDate<input type="text" aDate="Date of Access"/><br/>
+  <input type="submit" value="Add"/>
+</form> 
+
+<p>Website Bibliography</p>
+<ol>
+    <li th:each="ent : ${entries}" 
+    th:text="${ent.Author Last Name}+', '+${ent.Author First Name}+'. \`'+${ent.Article}+'.\` '+${ent.Website}+'. '+${Publisher}+', '+${ent.Date of Publication}+'. Web. '+${ent.Date of Access}+'. '+${ent.URL}+'.'"></li>
+</ol>
+
+</body>
+</html>

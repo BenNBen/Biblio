@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h3>Book Bibliography management system</h3>
+<form action="/addBook">
+  authorFirstName <input type="text" authorFN="Author First Name"/><br/>
+  authorLastName <input type="text" authorLN="Author Last Name"/><br/>
+  bookTitle <input type="text" book="Book"/><br/>
+  volume<input type="text" volume="Volume"/><br/>
+  publisher<input type="text" publisher="Publisher"/><br/>
+  edition<input type="text" edition="Edition"/><br/>
+  publishingYear<input type="text" pYear="Year of Publication"/><br/>
+  publisherCity<input type="text" pCity="City of Publication"/><br/>
+  <input type="submit" value="Add"/>
+</form> 
+
+<p>Book Bibliography</p>
+<ol>
+    <li th:each="ent : ${entries}" 
+    th:text="${ent.Book}+'. '+${ent.Author Last Name}+', '+${ent.Author First Name}+'. '+${ent.Volume}+', '+${ent.Edition}+'. '+${ent.Publisher}+', '+${ent.City of Publication}+'.'+${ent.Year of Publication}+'.'"></li>
+</ol>
+
+</body>
+</html>

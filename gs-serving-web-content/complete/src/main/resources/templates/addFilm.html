@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h3>Film Bibliography management system</h3>
+<form action="/addFilm">
+  directorFirstName <input type="text" directorFN="Director First Name"/><br/>
+  directorLastName <input type="text" directorLN="Director Last Name"/><br/>
+  filmTitle <input type="text" film="Film"/><br/>
+  mainPerformers<input type="text" actors="Actors"/><br/>
+  studio<input type="text" studio="Studio"/><br/>
+  medium<input type="text" medium="Medium"/><br/>
+  releaseYear<input type="text" year="Year of Release"/><br/>
+  <input type="submit" value="Add"/>
+</form> 
+
+<p>Film Bibliography</p>
+<ol>
+    <li th:each="ent : ${entries}" 
+    th:text="${ent.Film}+'. Dir. '+${ent.Director First Name}+', '+${ent.Director Last Name}+'. Perf. '+${ent.Actors}+'. '+${ent.Studio}+', '+${ent.Year of Release}+'. '+${ent.Medium}+'.'"></li>
+</ol>
+
+</body>
+</html>

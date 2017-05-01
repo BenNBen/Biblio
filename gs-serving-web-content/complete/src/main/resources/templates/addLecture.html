@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h3>Lecture Bibliography management system</h3>
+<form action="/addLecture">
+  speakerFirstName <input type="text" speakerFN="Speaker First Name"/><br/>
+  speakerLastName <input type="text" speakerLN="Speaker Last Name"/><br/>
+  presentationTitle <input type="text" presentation="Presentation"/><br/>
+  type<input type="text" type="Presentation Type"/><br/>
+  eventTitle<input type="text" event="Event Title"/><br/>
+  city<input type="text" city="City"/><br/>
+  location<input type="text" location="Location"/><br/>
+  date<input type="text" date="Date"/><br/>
+  <input type="submit" value="Add"/>
+</form> 
+
+<p>Lecture Bibliography</p>
+<ol>
+    <li th:each="ent : ${entries}" 
+    th:text="${ent.Speaker First Name}+', '+${ent.Speaker Last Name}+'. \`'+${ent.Presentation}+'`\. '+${ent.Event Title}+'. '+${ent.Location}+', '+${ent.City}+'. '+${ent.Date}+'. '+${ent.Presentation Type}+'.'"></li>
+</ol>
+
+</body>
+</html>
