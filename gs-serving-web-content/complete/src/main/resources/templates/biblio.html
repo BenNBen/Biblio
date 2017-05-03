@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html>
-<body>
+  <body>
+    
 <h3>bibliography management system</h3>
-<form action="/addEntry">
-  Author <input type="text" name="author"/><br/>
-  Title <input type="text" name="title"/><br/>
-  Year <input type="text" name="year"/><br/>
-  Journal <input type="text" name="journal"/><br/>
-  Media <input type="text" name ="media"/><br/>
-  <input type="submit" value="Add"/>
-</form> 
-
-<p>Bibliography</p>
-<ol>
-    <li th:each="ent : ${entries}" 
-    th:text="${ent.author}+', '+${ent.title}+', '+${ent.journal}+', '+${ent.year}+', '+${ent.media}+'.'"></li>
-</ol>
+<form action="/addBook.html"><input type="Submit" value ="Add a book"/>
+</form>
+<form action="/addFilm.html"><input type="Submit" value ="Add a film"/>
+</form>
+<form action="/addJournal.html"><input type="Submit" value ="Add a journal"/>
+</form>
+<form action="/addLecture.html"><input type="Submit" value ="Add a lecture"/>
+</form>
+<form action="/addWebsite.html"><input type="Submit" value ="Add a website"/>
+</form>
 
 </body>
 </html>

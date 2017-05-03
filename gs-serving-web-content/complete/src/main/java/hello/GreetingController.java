@@ -110,10 +110,14 @@ public class GreetingController {
 	entries.addAll(journals);
 	entries.addAll(lectures);
 	entries.addAll(websites);
-	Comparator<Entry> comp = (Entry a, Entry b) -> {
-	    return a.citation.compareTo(b.citation);
-	};
-	Collections.sort(entries, comp);
+	@Override
+	    public int compareTo(Entry compareEntry){
+	    return this.citation.compareTo(compareEntry.citation);
+	}
+	//Comparator<Entry> comp = (Entry a, Entry b) -> {
+	//   return a.citation.compareTo(b.citation);
+	//};
+	//Collections.sort(entries, comp);
 	model.addAttribute("entries", entries);
 	this.entries = entries;
 	return "biblio";
