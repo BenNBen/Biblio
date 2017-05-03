@@ -110,10 +110,10 @@ public class GreetingController {
 	entries.addAll(journals);
 	entries.addAll(lectures);
 	entries.addAll(websites);
-	@Override
-	    public int compareTo(Entry compareEntry){
-	    return this.citation.compareTo(compareEntry.citation);
-	}
+	//	@Override
+	//   public int compareTo(Entry compareEntry){
+	//   return this.citation.compareTo(compareEntry.citation);
+	//}
 	//Comparator<Entry> comp = (Entry a, Entry b) -> {
 	//   return a.citation.compareTo(b.citation);
 	//};
