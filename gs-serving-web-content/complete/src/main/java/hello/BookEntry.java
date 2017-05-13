@@ -1,19 +1,5 @@
 package hello;
 
-/*
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
-*/
-
 public class BookEntry extends Entry{
 	private String bookTitle;
 	private String authorFirstName;
@@ -36,9 +22,21 @@ public class BookEntry extends Entry{
 		this.citation = "";
 	}
 	
-	@Override void organize(){
+	@Override Entry copy(){
+		Entry e = new BookEntry(this.bookTitle, this.authorFirstName, this.authorLastName, this.volume, this.edition, this.publisher, this.publisherCity, this.publishingYear);
+		e.cite();
+		return e;
+	}
+	
+	@Override void setName(){
 		this.lastName = this.authorLastName;
+	}
+	
+	@Override void setTitle(){
 		this.title = this.bookTitle;
+	}
+	
+	@Override void organize(){
 		if(this.volume.equals("") && this.edition.equals("")){
 			this.citation = this.authorLastName + ", " + this.authorFirstName + ". " + this.bookTitle + ". " + this.publisherCity + ": " + this.publisher + ", " + this.publishingYear + ". Print.";
 		} else if(this.volume.equals("")){

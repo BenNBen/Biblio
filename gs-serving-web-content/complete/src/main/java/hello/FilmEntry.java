@@ -1,19 +1,5 @@
 package hello;
 
-/*
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
-*/
-
 public class FilmEntry extends Entry{
 	private String filmTitle;
 	private String directorFirstName;
@@ -34,9 +20,21 @@ public class FilmEntry extends Entry{
 		this.citation = "";
 	}
 	
-	@Override void organize(){
+	@Override Entry copy(){
+		Entry e = new FilmEntry(this.filmTitle, this.directorFirstName, this.directorLastName, this.mainPerformers, this.studio, this.medium, this.releaseYear);
+		e.cite();
+		return e;
+	}
+	
+	@Override void setName(){
 		this.lastName = this.directorLastName;
+	}
+	
+	@Override void setTitle(){
 		this.title = this.filmTitle;
+	}
+	
+	@Override void organize(){
 		this.citation = this.filmTitle + ". Dir. " + this.directorFirstName + ", " + this.directorLastName + ". Perf. " + this.mainPerformers + ". " + this.studio + ", " + this.releaseYear + ". " + this.medium + ".";
 	}
 }

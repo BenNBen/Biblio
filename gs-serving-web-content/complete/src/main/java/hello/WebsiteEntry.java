@@ -1,19 +1,4 @@
 package hello;
-
-/*
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
-*/
-
 public class WebsiteEntry extends Entry{
 	private String articleTitle;
 	private String authorFirstName;
@@ -36,9 +21,21 @@ public class WebsiteEntry extends Entry{
 		this.citation = "";
 	}
 	
-	@Override void organize(){
+	@Override Entry copy(){
+		Entry e = new WebsiteEntry(this.articleTitle, this.authorFirstName, this.authorLastName, this.websiteTitle, this.publisher, this.url, this.publishingDate, this.accessDate);
+		e.cite();
+		return e;
+	}
+	
+	@Override void setName(){
 		this.lastName = this.authorLastName;
+	}
+	
+	@Override void setTitle(){
 		this.title = this.articleTitle;
+	}
+	
+	@Override void organize(){
 		this.citation = this.authorLastName + ", " + this.authorFirstName + ". \"" + this.articleTitle + ".\" " + this.websiteTitle + ". " + this.publisher + ", " + this.publishingDate + ". Web. " + this.accessDate + ". " + this.url + ".";
 	}
 }
