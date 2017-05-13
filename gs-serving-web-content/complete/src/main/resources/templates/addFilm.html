@@ -22,29 +22,15 @@
   </form>
   
 <form action="/addFilm">
-  directorFirstName <input type="text" directorFN="Director First Name"/><br/>
-  directorLastName <input type="text" directorLN="Director Last Name"/><br/>
-  filmTitle <input type="text" film="Film"/><br/>
-  mainPerformers<input type="text" actors="Actors"/><br/>
+  directorFN <input type="text" directorFN="Director First Name"/><br/>
+  directorLN <input type="text" directorLN="Director Last Name"/><br/>
+  title <input type="text" title="Film"/><br/>
+  actors<input type="text" actors="Actors"/><br/>
   studio<input type="text" studio="Studio"/><br/>
   medium<input type="text" medium="Medium"/><br/>
-  releaseYear<input type="text" year="Year of Release"/><br/>
+  year<input type="text" year="Year of Release"/><br/>
   <input type="submit" value="Add"/>
 </form> 
-
-<h3>Delete</h3>
-
-<form action="/deleteEntry">
-  filmTitle <input type="text" film="Film"/><br/>
-  <input type="submit" value = "Remove"/>
-</form>
-
-
-<h3>Film Bibliography</h3>
-<ol>
-    <li th:each="ent : ${entries}" 
-    th:text="${ent.Film}+'. Dir. '+${ent.Director First Name}+', '+${ent.Director Last Name}+'. Perf. '+${ent.Actors}+'. '+${ent.Studio}+', '+${ent.Year of Release}+'. '+${ent.Medium}+'.'"></li>
-</ol>
 
 </body>
 </html>

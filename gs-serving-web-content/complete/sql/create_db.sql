@@ -1,7 +1,11 @@
 create database biblio;
 use biblio;
-create table website (authorFN text, authorLN text, article text, website text, publisher text, url text, pDate text, aDate text);
-create table lecture (speakerFN text, speakerLN text, presentation text, genre text, city text, event text, location text, jDate text);
-create table journal (authorFN text, authorLN text, article text, volume text, journal text, issue text, pYear text, jStart text, jEnd text, db text, jDate text);
-create table film (directorFN text, directorLN text, film text, studio text, medium text, fYear text);
-create table book (authorFN text, authorLN text, book text, volume text, publisher text, edition text, pYear text, pCity text);
+create table websites (article text, authorFN text, authorLN text, website text, publisher text, url text, publishDate text, accessDate text);
+
+create table lectures (presentation text, speakerFN text, speakerLN text, type text, event text,city text, location text, date text);
+
+create table journals (article text, authorFN text, authorLN text, volume text, journal text, issue text, year text, pageStart text, pageEnd text, dBase text, accessDate text);
+
+create table films (title text, directorFN text, directLN text,actors text, studio text, medium text, year text);
+
+create table books (title text, authorFN text, authorLN text, volume text, publisher text, edition text, year text, city text);

@@ -21,29 +21,16 @@
   <form action="./biblio.html"><input type="Submit" value ="Return to Bibliography Home"/></form>
   
 <form action="/addLecture">
-  speakerFirstName <input type="text" speakerFN="Speaker First Name"/><br/>
-  speakerLastName <input type="text" speakerLN="Speaker Last Name"/><br/>
-  presentationTitle <input type="text" presentation="Presentation"/><br/>
-  genre<input type="text" type="Presentation Type"/><br/>
-  eventTitle<input type="text" event="Event Title"/><br/>
+  speakerFN <input type="text" speakerFN="Speaker First Name"/><br/>
+  speakerLN <input type="text" speakerLN="Speaker Last Name"/><br/>
+  presentation <input type="text" presentation="Presentation"/><br/>
+  type<input type="text" type="Presentation Type"/><br/>
+  event<input type="text" event="Event Title"/><br/>
   city<input type="text" city="City"/><br/>
   location<input type="text" location="Location"/><br/>
-  jDate<input type="text" date="Date"/><br/>
+  date<input type="text" date="Date"/><br/>
   <input type="submit" value="Add"/>
 </form> 
-
-<h3>Delete</h3>
-
-<form action="/deleteEntry">
-  presentationTitle<input type="text" presentation="Presentation"/><br/>
-  <input type="submit" value = "Remove"/>
-</form>
-
-<h3>Lecture Bibliography</h3>
-<ol>
-    <li th:each="ent : ${entries}" 
-    th:text="${ent.Speaker First Name}+', '+${ent.Speaker Last Name}+'. \`'+${ent.Presentation}+'`\. '+${ent.Event Title}+'. '+${ent.Location}+', '+${ent.City}+'. '+${ent.Date}+'. '+${ent.Presentation Type}+'.'"></li>
-</ol>
 
 </body>
 </html>

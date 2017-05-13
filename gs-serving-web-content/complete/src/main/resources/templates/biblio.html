@@ -28,5 +28,19 @@
 <form action="./addWebsite.html"><input type="Submit" value ="Add a website"/>
 </form>
 
+<h2>Bibliography</p>
+<ol>
+  <li th:each="ent:${entries}"
+      th:text="${ent.citation}"></li>
+</ol>
+
+<h3>Delete</h3>
+<form action="/deleteEntry">
+  article <input type="text" article="Article"/><br/>
+  authorLN <input type="test" authorLN = "Author Last Name"/><br/>
+  <input type="submit" value="Remove"/>
+</form>
+
 </body>
 </html>
+

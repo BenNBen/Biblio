@@ -21,28 +21,16 @@
   <form action="./biblio.html"><input type="Submit" value ="Return to Bibliography Home"/></form>
   
 <form action="/addWebsite">
-  authorFirstName <input type="text" authorFN="Author First Name"/><br/>
-  authorLastName <input type="text" authorLN="Author Last Name"/><br/>
-  articleTitle <input type="text" article="Article"/><br/>
-  websiteTitle<input type="text" website="Website"/><br/>
+  authorFN <input type="text" authorFN="Author First Name"/><br/>
+  authorL <input type="text" authorLN="Author Last Name"/><br/>
+  article <input type="text" article="Article"/><br/>
+  website<input type="text" website="Website"/><br/>
   publisher<input type="text" publisher="Publisher"/><br/>
   url<input type="text" url="URL"/><br/>
-  publishingDate<input type="text" pDate="Date of Publication"/><br/>
-  accessDate<input type="text" aDate="Date of Access"/><br/>
+  publishDate<input type="text" publishDate="Date of Publication"/><br/>
+  accessDate<input type="text" accessDate="Date of Access"/><br/>
   <input type="submit" value="Add"/>
 </form> 
-
-<h3>Delete</h3>
-<form action="/deleteEntry">
-  article <input type="text" article="Article"/><br/>
-  <input type="submit" value="Remove"/>
-</form>
-
-<h3>Website Bibliography</h3>
-<ol>
-    <li th:each="ent : ${entries}" 
-    th:text="${ent.Author Last Name}+', '+${ent.Author First Name}+'. \`'+${ent.Article}+'.\` '+${ent.Website}+'. '+${Publisher}+', '+${ent.Date of Publication}+'. Web. '+${ent.Date of Access}+'. '+${ent.URL}+'.'"></li>
-</ol>
 
 </body>
 </html>
