@@ -13,6 +13,10 @@ import org.springframework.jdbc.core.RowMapper;
 
 @Controller
 public class GreetingController {
+
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+    
     private List<Entry> entries;
     @RequestMapping("/biblio")
     public String greeting(Model model) {
@@ -247,8 +251,7 @@ public class GreetingController {
     
     public boolean detectDuplicate(String title, String lastName, String type){
 	for(Entry entry : this.entries){
-	    String t,a;
-	    if(entry.title.compareTo(t) == 0 && entry.lastName.compareTo(a) == 0){
+	    if(entry.title.compareTo(title) == 0 && entry.lastName.compareTo(lastName) == 0){
 		switch(type) {
                 case "lecture": if(entry instanceof LectureEntry){
 			return true;
@@ -295,5 +298,6 @@ public class GreetingController {
 	    }
 	    return "redirect:biblio"; // back to the biblio view
 	}
+	return "ERROR";
     }  
 }
