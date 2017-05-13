@@ -229,5 +229,4 @@ public String addEntry(@RequestParam(value="authorLastName", required=true) Stri
     }
     return "redirect:biblio"; // back to the biblio view
 }
-    
 }

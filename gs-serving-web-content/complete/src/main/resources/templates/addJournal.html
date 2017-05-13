@@ -1,7 +1,22 @@
 <!DOCTYPE html>
 <html>
+   <head>
+    <style>
+    body{
+    text-align: center;
+    background-image: radial-gradient(circle at 250px, purple 0%, red 50%, blue 60%, purple 20%);
+    background-size:cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white;
+    font-family:Helvetica;
+    font-variant: small-caps;
+    }
+    </style>
+  </head>
 <body>
-<h3>Journal Bibliography management system</h3>
+<h2>Journal Bibliography management system</h2>
 
 <form action="./biblio.html"><input type="Submit" value ="Return to Bibliography Home"/></form>
 
@@ -20,7 +35,14 @@
   <input type="submit" value="Add"/>
 </form> 
 
-<p>Journal Bibliography</p>
+<h3>Delete</h3>
+
+<form action="/deleteEntry">
+  articleTitle <input type="text" article="Article"/><br/>
+  <input type="Submit" value = "Remove"/>
+</form>
+
+<h3>Journal Bibliography</h3>
 <ol>
     <li th:each="ent : ${entries}" 
     th:text="${ent.Author Last Name}+', '+${ent.Author First Name}+'. \'+${ent.Article}+\. '+${ent.Journal}+'. '+${ent.Volume}+'. '+${ent.Issue}+' ('+${ent.Year of Publication}+'): '+${ent.Starting Page}+'-'+${ent.Ending Page}+'. '+${ent.Database}+'. Web. '+${ent.Access Date}+'.'"></li>
