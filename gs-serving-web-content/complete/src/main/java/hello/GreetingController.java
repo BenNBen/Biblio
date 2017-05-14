@@ -6,20 +6,27 @@ import java.util.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 @Controller
+@RequestMapping("/")
 public class GreetingController {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
     
     private List<Entry> entries;
-    @RequestMapping("/biblio")
+    @GetMapping("/biblio")
     public String greeting(Model model) {
+	
 	List<Entry> films = this.jdbcTemplate.query(
 						    "select title, directorFN, directorLN, actors, studio, medium, year from films",
 						    new RowMapper<Entry>() {
@@ -131,7 +138,7 @@ public class GreetingController {
     }
     
     @RequestMapping("/deleteEntry")
-    public String deleteEntry(@RequestParam(value="authorLastName", required=true) String a, @RequestParam(value="title", required=true) String t, @RequestParam(value="type", required=true) String type, Model model) {
+    public String deleteEntry(@RequestParam(value="authorLN", defaultValue="SampleLN") String a, @RequestParam(value="title", defaultValue="SamplePres") String t, @RequestParam(value="type", defaultValue="SampleType") String type, Model model) {
 	for(Entry entry : this.entries){
 	    if(entry.title.compareTo(t) == 0 && entry.lastName.compareTo(a) == 0){
 		switch(type) {
@@ -155,17 +162,23 @@ public class GreetingController {
 	}
 	return "redirect:biblio"; // back to the biblio view
     }
+    //@RequestMapping("/addWebsite")
+    @GetMapping("/addWebsite")
+    public String addWebsite(Model model){
+	return "addWebsite";
+    }
+
     @RequestMapping("/addWebsite")
-    public String addWebsite(@RequestParam(value="article", required=true) String article,
-			     @RequestParam(value="authorFN", required=true) String authorFN,
-			     @RequestParam(value="authorLN", required=true) String authorLN,
-			     @RequestParam(value="website", required=true) String website,
+    public String addWebsite(@RequestParam(value="article", required=false) String article,
+			     @RequestParam(value="authorFN", required=false) String authorFN,
+			     @RequestParam(value="authorLN", required=false) String authorLN,
+			     @RequestParam(value="website", required=false) String website,
 			     @RequestParam(value="publisher", required=false) String publisher,
-			     @RequestParam(value="url", required=true) String url,
+			     @RequestParam(value="url", required=false) String url,
 			     @RequestParam(value="publishDate", required=false) String publishDate,
-			     @RequestParam(value="accessDate", required=true) String accessDate,
+			     @RequestParam(value="accessDate", required=false) String accessDate,
 			     Model model) {
-	if(publishDate.equals("")){
+		if(publishDate.equals("")){
 	    publishDate = "N/A";
 	}
 	if(publisher.equals("")){
@@ -173,38 +186,50 @@ public class GreetingController {
 	}
 	if(detectDuplicate(article, authorLN, "website") == false){
 	    jdbcTemplate.update("insert into websites values (?, ?, ?, ?, ?, ?, ?, ?)", article, authorFN, authorLN, website, publisher, url, publishDate, accessDate);
-	}
-	return "redirect:biblio"; // back to the biblio view
+	    }
+	return "redirect:/addWebsite"; // back to the biblio view
+	
     }
     
+    @GetMapping("/addBook")
+    public String addBook(Model model){
+	return "addBook";
+    }
+
     @RequestMapping("/addBook")
-    public String addBook(@RequestParam(value="title", required=true) String title,
-			  @RequestParam(value="authorFN", required=true) String authorFN,
-			  @RequestParam(value="authorLN", required=true) String authorLN,
+    public String addBook(@RequestParam(value="title", required=false) String title,
+			  @RequestParam(value="authorFN", required=false) String authorFN,
+			  @RequestParam(value="authorLN", required=false) String authorLN,
 			  @RequestParam(value="volume", required=false) String volume,
 			  @RequestParam(value="edition", required=false) String edition,
-			  @RequestParam(value="publisher", required=true) String publisher,
-			  @RequestParam(value="city", required=true) String city,
-			  @RequestParam(value="year", required=true) String year,
+			  @RequestParam(value="publisher", required=false) String publisher,
+			  @RequestParam(value="city", required=false) String city,
+			  @RequestParam(value="year", required=false) String year,
 			  Model model) {
 	if(detectDuplicate(title, authorLN, "book") == false){
 	    jdbcTemplate.update("insert into books values (?, ?, ?, ?, ?, ?, ?, ?)", title, authorFN, authorLN, volume, publisher, edition, year, city);
-	}
-	return "redirect:biblio"; // back to the biblio view
+	    }
+	return "redirect:/addBook"; // back to the biblio view
     }
     
+    @GetMapping("/addJournal")
+    public String addJournal(Model model){
+	return "addJournal";
+    }
+
+    
     @RequestMapping("/addJournal")
-    public String addJournal(@RequestParam(value="article", required=true) String article,
-			     @RequestParam(value="authorFN", required=true) String authorFN,
-			     @RequestParam(value="authorLN", required=true) String authorLN,
-			     @RequestParam(value="journal", required=true) String journal,
-			     @RequestParam(value="volume", required=true) String volume,
+    public String addJournal(@RequestParam(value="article", required=false) String article,
+			     @RequestParam(value="authorFN", required=false) String authorFN,
+			     @RequestParam(value="authorLN", required=false) String authorLN,
+			     @RequestParam(value="journal", required=false) String journal,
+			     @RequestParam(value="volume", required=false) String volume,
 			     @RequestParam(value="issue", required=false) String issue,
 			     @RequestParam(value="year", required=false) String year,
-			     @RequestParam(value="pageStart", required=true) String pageStart,
-			     @RequestParam(value="pageEnd", required=true) String pageEnd,
-			     @RequestParam(value="database", required=true) String dBase,
-			     @RequestParam(value="accessDate", required=true) String accessDate,
+			     @RequestParam(value="pageStart", required=false) String pageStart,
+			     @RequestParam(value="pageEnd", required=false) String pageEnd,
+			     @RequestParam(value="database", required=false) String dBase,
+			     @RequestParam(value="accessDate", required=false) String accessDate,
 			     Model model) {
 	if(volume.equals("")){
 	    volume = "N/A";
@@ -215,38 +240,46 @@ public class GreetingController {
 	if(detectDuplicate(article, authorLN, "journal") == false){
 	    jdbcTemplate.update("insert into journals values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", article, authorFN, authorLN, volume, journal, issue, year, pageStart, pageEnd, dBase, accessDate);
 	}
-	return "redirect:biblio"; // back to the biblio view
+	
+	return "redirect:/addJournal"; // back to the biblio view
     }
     
+    @GetMapping("/addFilm")
+    public String addFilm(Model model) {
+	return "addFilm"; // back to the biblio view
+    }
+
     @RequestMapping("/addFilm")
-    public String addFilm(@RequestParam(value="title", required=true) String title,
-			  @RequestParam(value="directorFN", required=true) String directorFN,
-			  @RequestParam(value="directorLN", required=true) String directorLN,
-			  @RequestParam(value="actors", required=true) String actors,
-			  @RequestParam(value="studio", required=true) String studio,
-			  @RequestParam(value="medium", required=true) String medium,
-			  @RequestParam(value="year", required=true) String year,
-			  Model model) {
+    public String addFilm(
+			  @RequestParam(value="title", required=true) String title,
+			  @RequestParam(value="directorFN", required=false) String directorFN,
+			  @RequestParam(value="directorLN", required=false) String directorLN,
+			  @RequestParam(value="actors", required=false) String actors,
+			  @RequestParam(value="studio", required=false) String studio,
+			  @RequestParam(value="medium", required=false) String medium,
+			  @RequestParam(value="year", required=false) String year,
+			  Model model){
 	if(detectDuplicate(title, directorLN, "film") == false){
 	    jdbcTemplate.update("insert into films values (?, ?, ?, ?, ?, ?, ?)", title, directorFN, directorLN, actors, studio, medium, year);
 	}
-	return "redirect:biblio"; // back to the biblio view
+	return "redirect:/addFilm";
     }
     
-    @RequestMapping("/addLecture")
-    public String addLecture(@RequestParam(value="presentation", required=true) String presentation,
-			     @RequestParam(value="speakerFN", required=true) String speakerFN,
-			     @RequestParam(value="speakerLN", required=true) String speakerLN,
-			     @RequestParam(value="type", required=true) String type,
-			     @RequestParam(value="event", required=true) String event,
-			     @RequestParam(value="city", required=true) String city,
-			     @RequestParam(value="location", required=true) String location,
-			     @RequestParam(value="date", required=true) String date,
+    
+    @GetMapping("/addLecture")
+	public String addLecture(@RequestParam(value="presentation", required=false) String presentation,
+			     @RequestParam(value="speakerFN", required=false) String speakerFN,
+			     @RequestParam(value="speakerLN",required=false) String spearkerLN,
+			     @RequestParam(value="type", required=false) String type,
+			     @RequestParam(value="event", required=false) String event,
+			     @RequestParam(value="city", required=false) String city,
+			     @RequestParam(value="location", required=false) String location,
+			     @RequestParam(value="date", required=false) String date,
 			     Model model) {
-	if(detectDuplicate(presentation, speakerLN, "lecture") == false){
-	    jdbcTemplate.update("insert into lectures values (?, ?, ?, ?, ?, ?, ?, ?)", presentation, speakerFN, speakerLN, type, event, city, location, date);
-	}
-	return "redirect:biblio"; // back to the biblio view
+	/*if(detectDuplicate(p, sLN, "lecture") == false){
+	    jdbcTemplate.update("insert into lectures values (?, ?, ?, ?, ?, ?, ?, ?)", p, sFN, sLN, t, e, c, l, d);
+	    }*/
+	return "addLecture"; // back to the biblio view
     }
     
     public boolean detectDuplicate(String title, String lastName, String type){

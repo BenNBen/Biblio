@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
   <head>
     <style>
     body{
@@ -20,15 +20,15 @@
 
   <form action="./biblio.html"><input type="Submit" value ="Return to Bibliography Home"/></form>
   
-<form action="/addLecture">
-  speakerFN <input type="text" speakerFN="speakerFN"/><br/>
-  speakerLN <input type="text" speakerLN="speakerLN"/><br/>
-  presentation <input type="text" presentation="presentation"/><br/>
-  type<input type="text" type="type"/><br/>
-  event<input type="text" event="event"/><br/>
-  city<input type="text" city="city"/><br/>
-  location<input type="text" location="location"/><br/>
-  speechDate<input type="text" speechDate="speechDate"/><br/>
+  <form action="/addLecture">
+    Presentation <input type="text" name="presentation"/><br/>
+    Speaker First Name <input type="text" name="speakerFN"/><br/>
+    speaker Last Name <input type="text" name="speakerLN"/><br/>
+    Type<input type="text" name="type"/><br/>
+    Event<input type="text" name="event"/><br/>
+    City<input type="text" name="city"/><br/>
+    Location<input type="text" name="location"/><br/>
+    Speech Date<input type="text" name="date"/><br/>
   <input type="submit" value="Add"/>
 </form> 
 

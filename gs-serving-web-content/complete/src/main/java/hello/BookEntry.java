@@ -12,50 +12,50 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 public class BookEntry extends Entry{
-	private String bookTitle;
-	private String authorFirstName;
-	private String authorLastName;
+	private String title;
+	private String authorFN;
+	private String authorLN;
 	private String volume;
 	private String edition;
 	private String publisher;
-	private String publisherCity;
-	private String publishingYear;
+	private String city;
+	private String year;
 	
-	public BookEntry(String title, String authorFN, String authorLN, String volume, String edition, String publisher, String pCity, String pYear){
-		this.title = bookTitle;
-		this.authorFirstName = authorFN;
-		this.authorLastName = authorLN;
+	public BookEntry(String title, String authorFN, String authorLN, String volume, String edition, String publisher, String city, String year){
+		this.title = title;
+		this.authorFN = authorFN;
+		this.authorLN = authorLN;
 		this.volume = volume;
 		this.publisher = publisher;
 		this.edition = edition;
-		this.publishingYear = pYear;
-		this.publisherCity = pCity;
+		this.year = year;
+		this.city = city;
 		this.citation = "";
 	}
 	
 	@Override Entry copy(){
-		Entry e = new BookEntry(this.bookTitle, this.authorFirstName, this.authorLastName, this.volume, this.edition, this.publisher, this.publisherCity, this.publishingYear);
+		Entry e = new BookEntry(this.title, this.authorFN, this.authorLN, this.volume, this.edition, this.publisher, this.city, this.year);
 		e.cite();
 		return e;
 	}
 	
 	@Override void setName(){
-		this.lastName = this.authorLastName;
+		this.lastName = this.authorLN;
 	}
 	
 	@Override void setTitle(){
-		this.title = this.bookTitle;
+		this.title = this.title;
 	}
 	
 	@Override void organize(){
 		if(this.volume.equals("") && this.edition.equals("")){
-			this.citation = this.authorLastName + ", " + this.authorFirstName + ". " + this.bookTitle + ". " + this.publisherCity + ": " + this.publisher + ", " + this.publishingYear + ". Print.";
+			this.citation = this.authorLN + ", " + this.authorFN + ". " + this.title + ". " + this.city + ": " + this.publisher + ", " + this.year + ". Print.";
 		} else if(this.volume.equals("")){
-			this.citation = this.authorLastName + ", " + this.authorFirstName + ". " + this.bookTitle + ". " + this.edition + " ed. " + this.publisherCity + ": " + this.publisher + ", " + this.publishingYear + ". Print.";
+			this.citation = this.authorLN + ", " + this.authorFN + ". " + this.title + ". " + this.edition + " ed. " + this.city + ": " + this.publisher + ", " + this.year + ". Print.";
 		} else if(this.edition.equals("")){
-			this.citation = this.authorLastName + ", " + this.authorFirstName + ". " + this.bookTitle + ". Vol. " + this.volume + ". " + this.publisherCity + ": " + this.publisher + ", " + this.publishingYear + ". Print.";
+			this.citation = this.authorLN + ", " + this.authorFN + ". " + this.title + ". Vol. " + this.volume + ". " + this.city + ": " + this.publisher + ", " + this.year + ". Print.";
 		} else {
-		this.citation = this.authorLastName + ", " + this.authorFirstName + ". " + this.bookTitle + ". " + this.edition + " ed. Vol. " + this.volume + ". " + this.publisherCity + ": " + this.publisher + ", " + this.publishingYear + ". Print.";
+		this.citation = this.authorLN + ", " + this.authorFN + ". " + this.title + ". " + this.edition + " ed. Vol. " + this.volume + ". " + this.city + ": " + this.publisher + ", " + this.year + ". Print.";
 		}
 	}
 }

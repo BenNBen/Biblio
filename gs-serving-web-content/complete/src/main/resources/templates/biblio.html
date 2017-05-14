@@ -3,7 +3,6 @@
    <head>
     <style>
     body{
-    text-align: center;
     background-image: radial-gradient(circle at 250px, purple 0%, red 10%, blue 100%, purple 40%);
     background-size:cover;
     background-position: center center;
@@ -17,15 +16,15 @@
   </head>
   <body>
     <h2>Bibliography management system</h2>
-    <form action="./addBook.html"><input type="Submit" value ="Add a book"/>
+    <form action="./addBook"><input type="Submit" value ="Add a book"/>
     </form>
-    <form action="./addFilm.html"><input type="Submit" value ="Add a film"/>
+    <form action="./addFilm"><input type="Submit" value ="Add a film"/>
 </form>
-    <form action="./addJournal.html"><input type="Submit" value ="Add a journal"/>
+    <form action="./addJournal"><input type="Submit" value ="Add a journal"/>
     </form>
-    <form action="./addLecture.html"><input type="Submit" value ="Add a lecture"/>
-    </form>
-    <form action="./addWebsite.html"><input type="Submit" value ="Add a website"/>
+    <form action="./addLecture"><input type="Submit" value ="Add a lecture"/></form>
+
+    <form action="./addWebsite"><input type="Submit" value ="Add a website"/>
     </form>
     
     <h2>Bibliography</h2>
@@ -36,9 +35,14 @@
     
     <h3>Delete</h3>
     <form action="/deleteEntry">
-      article <input type="text" article="Article"/><br/>
-      authorLN <input type="text" authorLN = "Author Last Name"/><br/>
-      type <input type="text" media="Media Type"/><br/>
+      authorLN <input type="text" authorLN="authorLN"/><br/>
+      title <input type="text" article="title"/><br/>
+      <!--<input type="radio" value="book" name="type"> Book</br>
+      <input type="radio" value="film" name="type"> Film</br>
+      <input type="radio" value="journal" name="type"> Journal</br>
+      <input type="radio" value="website" name="type"> Website</br>
+      <input type="radio" value="lecture" name="type"> Lecture</br>-->
+      type <input type="text" media="type"/><br/>
       <input type="submit" value="Remove"/>
     </form>
     
@@ -46,6 +50,11 @@
     <form action="/searchEntry">
       authorLN<input type="text" authorLN="Author Last Name"/><br/>
       title<input type="text" title="Title"/><br/>
+      <!--type<input type="radio" value="book" name="type"> Book</br>
+      type<input type="radio" value="film" name="type"> Film</br>
+      type<input type="radio" value="journal" name="type"> Journal</br>
+      type<input type="radio" value="website" name="type"> Website</br>
+      type<input type="radio" value="lecture" name="type"> Lecture</br>-->
       type<input type="text" media="Media type"/><br/>
       <input type="submit" value="Search"/>
     </form>
