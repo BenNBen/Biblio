@@ -163,7 +163,7 @@ public class GreetingController {
 	return "redirect:biblio"; // back to the biblio view
     }
     //@RequestMapping("/addWebsite")
-    @GetMapping("/addWebsite")
+    @GetMapping("/switchWebsite")
     public String addWebsite(Model model){
 	return "addWebsite";
     }
@@ -191,7 +191,7 @@ public class GreetingController {
 	
     }
     
-    @GetMapping("/addBook")
+    @GetMapping("/switchBook")
     public String addBook(Model model){
 	return "addBook";
     }
@@ -212,7 +212,7 @@ public class GreetingController {
 	return "redirect:/addBook"; // back to the biblio view
     }
     
-    @GetMapping("/addJournal")
+    @GetMapping("/switchJournal")
     public String addJournal(Model model){
 	return "addJournal";
     }
@@ -245,7 +245,7 @@ public class GreetingController {
     }
     
     @GetMapping("/addFilm")
-    public String addFilm(Model model) {
+    public String switchFilm(Model model) {
 	return "addFilm"; // back to the biblio view
     }
 
@@ -265,20 +265,26 @@ public class GreetingController {
 	return "redirect:/addFilm";
     }
     
+
     
     @GetMapping("/addLecture")
-	public String addLecture(@RequestParam(value="presentation", required=false) String presentation,
+    public String switchLecture(Model model){
+	return "addLecture";
+    }
+
+    @RequestMapping("/addLEcture")
+    public String addLecture(@RequestParam(value="presentation", required=false) String presentation,
 			     @RequestParam(value="speakerFN", required=false) String speakerFN,
-			     @RequestParam(value="speakerLN",required=false) String spearkerLN,
+			     @RequestParam(value="speakerLN",required=false) String speakerLN,
 			     @RequestParam(value="type", required=false) String type,
 			     @RequestParam(value="event", required=false) String event,
 			     @RequestParam(value="city", required=false) String city,
 			     @RequestParam(value="location", required=false) String location,
 			     @RequestParam(value="date", required=false) String date,
 			     Model model) {
-	/*if(detectDuplicate(p, sLN, "lecture") == false){
-	    jdbcTemplate.update("insert into lectures values (?, ?, ?, ?, ?, ?, ?, ?)", p, sFN, sLN, t, e, c, l, d);
-	    }*/
+	if(detectDuplicate(presentation, speakerLN, "lecture") == false){
+	    jdbcTemplate.update("insert into lectures values (?, ?, ?, ?, ?, ?, ?, ?)", presentation, speakerFN, speakerLN, type, event, city, location, date);
+	}    
 	return "addLecture"; // back to the biblio view
     }
     
