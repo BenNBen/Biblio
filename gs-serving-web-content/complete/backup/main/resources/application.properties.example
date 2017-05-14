@@ -1,4 +1,0 @@
-spring.datasource.url=jdbc:mysql://localhost/biblio
-spring.datasource.username=barriageb@gmail.com
-spring.datasource.password=Databot11
-spring.datasource.driver-class-name=com.mysql.jdbc.Driver

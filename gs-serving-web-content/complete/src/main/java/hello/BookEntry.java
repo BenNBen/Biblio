@@ -1,6 +1,5 @@
 package hello;
 
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
@@ -22,8 +21,8 @@ public class BookEntry extends Entry{
 	private String publisherCity;
 	private String publishingYear;
 	
-	public BookEntry(String book, String authorFN, String authorLN, String volume, String edition, String publisher, String pCity, String pYear){
-		this.bookTitle = book;
+	public BookEntry(String title, String authorFN, String authorLN, String volume, String edition, String publisher, String pCity, String pYear){
+		this.title = bookTitle;
 		this.authorFirstName = authorFN;
 		this.authorLastName = authorLN;
 		this.volume = volume;

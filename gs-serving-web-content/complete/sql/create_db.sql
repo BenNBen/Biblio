@@ -6,6 +6,6 @@ create table lectures (presentation text, speakerFN text, speakerLN text, type t
 
 create table journals (article text, authorFN text, authorLN text, volume text, journal text, issue text, year text, pageStart text, pageEnd text, dBase text, accessDate text);
 
-create table films (title text, directorFN text, directLN text,actors text, studio text, medium text, year text);
+create table films (title text, directorFN text, directorLN text,actors text, studio text, medium text, year text);
 
 create table books (title text, authorFN text, authorLN text, volume text, publisher text, edition text, year text, city text);
