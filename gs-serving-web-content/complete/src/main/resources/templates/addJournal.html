@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
    <head>
     <style>
     body{
@@ -21,9 +21,9 @@
 <form action="./biblio.html"><input type="Submit" value ="Return to Bibliography Home"/></form>
 
 <form method="POST">
+  article <input type="text" article="article"/><br/>
   authorFN <input type="text" authorFN="authorFN"/><br/>
   authorLN <input type="text" authorLN="authorLN"/><br/>
-  article <input type="text" article="article"/><br/>
   volume<input type="text" volume="volume"/><br/>
   journal<input type="text" journal="journal"/><br/>
   issue<input type="text" issue="issue"/><br/>
