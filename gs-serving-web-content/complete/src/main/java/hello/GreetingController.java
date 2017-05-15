@@ -2,6 +2,7 @@ package hello;
 /*
   Authors: Ben Barriage & Anne Marie Bogar
   Purpose: Design an HTML/Java/MYSQL based Bibliography program supporting multiple types of media (book, film, journal, lecture, website)
+  Bugs: Bess beetle, pill bug, addBook only working once for some reason
   Date: 5/10/17
  */
 import java.sql.ResultSet;
