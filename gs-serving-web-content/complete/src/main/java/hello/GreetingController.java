@@ -345,6 +345,11 @@ public class GreetingController {
 
     //search entry function used to check whether an entry currently exists in the database based off of the entered last name and work, as well as type of media
     @RequestMapping("/searchEntry")
+    public String switchSearch(Model model){
+	return "searchEntry";
+    }
+    
+    @PostMapping("/searchEntry")
     public String search(@RequestParam(value="lastName", required=true) String a, @RequestParam(value="work", required=true) String t, @RequestParam(value="type", required=true) String type, Model model) {
 	for(Entry entry : this.entries){
 	    if(entry.title.compareTo(t) == 0 && entry.lastName.compareTo(a) == 0){
@@ -366,8 +371,8 @@ public class GreetingController {
 		    }
     		}
 	    }
-	    return "redirect:biblio"; // back to the biblio view
+	    return "redirect:/biblio"; // back to the biblio view
 	}
-	return "ERROR";
+	return "redirect:/searchEntry";
     }  
 }

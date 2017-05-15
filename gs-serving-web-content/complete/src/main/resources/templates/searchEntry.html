@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+    <style>
+    body{
+    text-align: center;
+    background-image: radial-gradient(circle at 250px, purple 0%, red 100%, blue 15%, purple 30%);
+    background-size:cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white;
+    font-family:Helvetica;
+    font-variant: small-caps;
+    }
+    </style>
+  </head>
+<body>
+
+
+  <h2>Search for A Citation</h2>
+
+  <h3>If you stay on this page, the searched entry does not exist and you may search again. If you are redirected to the main page, the entry does exist.</h3>
+  
+  <form action="./biblio.html"><input type="Submit" value ="Return to Bibliography Home"/>
+  </form>
+  
+  <form method="POST">
+    lastName<input type="text" name="lastName"/><br/>
+    work<input type="text" name="work"/><br/>
+    type<input type="text" name="type"/><br/>
+    <input type="submit" value="Search"/>
+  </form>
+
+</body>
+</html>
