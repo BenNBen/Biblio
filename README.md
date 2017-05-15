@@ -2,4 +2,4 @@ Edited Spring Boot following https://spring.io/guides/gs/serving-web-content/ as
 
 Used to implement Citations Style program
 
-Ben Barriage
+Ben Barriage & Anne Marie Bogar
