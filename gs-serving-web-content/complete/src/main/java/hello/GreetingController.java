@@ -142,26 +142,31 @@ public class GreetingController {
 	return "biblio";
     }
 
+    @GetMapping("/deleteEntry")
+    public String switchEntry(Model model){
+	return "/deleteEntry";
+    }
+
     //used to delete an entry from the table using the last name of the author and the title of the work, update once done
     @RequestMapping("/deleteEntry")
-    public String deleteEntry(@RequestParam(value="authorLN") String authorLN, @RequestParam(value="title") String title, @RequestParam(value="type") String type, Model model) {
+    public String deleteEntry(@RequestParam(value="authorLN", required=true) String authorLN, @RequestParam(value="title",required=true) String title, @RequestParam(value="type", required=true) String type, Model model) {
 	for(Entry entry : this.entries){
 	    if(entry.title.compareTo(title) == 0 && entry.lastName.compareTo(authorLN) == 0){
 		switch(type) {
                 case "lecture": if(entry instanceof LectureEntry){
-			jdbcTemplate.update("delete from lectures where presentation = ? and speakerLastName = ?", authorLN, title);
+			jdbcTemplate.update("delete from lectures where presentation = ? and where speakerLastName = ?", authorLN, title);
 		    }
                 case "website": if(entry instanceof WebsiteEntry){
-			jdbcTemplate.update("delete from websites where article = ? and authorLastName = ?", authorLN, title);
+			jdbcTemplate.update("delete from websites where article = ? and where authorLastName = ?", authorLN, title);
 		    }
                 case "book": if(entry instanceof BookEntry){
-			jdbcTemplate.update("delete from books where book = ? and authorLastName = ?", authorLN, title);
+			jdbcTemplate.update("delete from books where book = ? and where authorLastName = ?", authorLN, title);
 		    }
                 case "film": if(entry instanceof FilmEntry){
-			jdbcTemplate.update("delete from films where film = ? and directorLastName = ?", authorLN, title);
+			jdbcTemplate.update("delete from films where film = ? and where directorLastName = ?", authorLN, title);
 		    }
                 case "journal": if(entry instanceof JournalEntry){
-			jdbcTemplate.update("delete from journals where article = ? and authorLastName = ?", authorLN, title);
+			jdbcTemplate.update("delete from journals where article = ? and where authorLastName = ?", authorLN, title);
 		    }
     		}
 	    }
@@ -199,7 +204,7 @@ public class GreetingController {
 	if(detectDuplicate(article, authorLN, "website") == false){
 	    jdbcTemplate.update("insert into websites values (?, ?, ?, ?, ?, ?, ?, ?)", article, authorFN, authorLN, website, publisher, url, publishDate, accessDate);
 	    }
-	return "redirect:biblio"; // back to the biblio view
+	return "redirect:/biblio"; // back to the biblio view
 	
     }
 
@@ -215,16 +220,16 @@ public class GreetingController {
 			  @RequestParam(value="authorFN", required=true) String authorFN,
 			  @RequestParam(value="authorLN", required=true) String authorLN,
 			  @RequestParam(value="volume", required=true) String volume,
-			  @RequestParam(value="edition", required=true) String edition,
 			  @RequestParam(value="publisher", required=true) String publisher,
-			  @RequestParam(value="city", required=true) String city,
+			  @RequestParam(value="edition", required=true) String edition,
 			  @RequestParam(value="year", required=true) String year,
+			  @RequestParam(value="city", required=true) String city,
 			  Model model) {
 	//checks if the entered information matches that of a current entry
 	if(detectDuplicate(title, authorLN, "book") == false){
 	    jdbcTemplate.update("insert into books values (?, ?, ?, ?, ?, ?, ?, ?)", title, authorFN, authorLN, volume, publisher, edition, year, city);
-	    }
-	return "redirect:biblio"; // back to the biblio view
+	}
+	return "redirect:/biblio"; // back to the biblio view
     }
 
     //function used to switch view to that of adding journal information
@@ -257,10 +262,10 @@ public class GreetingController {
 	}
 	//checks if entered information matches that of a current database entry
 	if(detectDuplicate(article, authorLN, "journal") == false){
-	    jdbcTemplate.update("insert into journals values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", article, authorFN, authorLN, volume, journal, issue, year, pageStart, pageEnd, dBase, accessDate);
+	    jdbcTemplate.update("insert into journals values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", article, authorFN, authorLN, journal, volume, issue, year, pageStart, pageEnd, dBase, accessDate);
 	}
 	
-	return "redirect:biblio"; // back to the biblio view
+	return "redirect:/biblio"; // back to the biblio view
     }
 
     //switches view to that of adding a film
@@ -284,7 +289,7 @@ public class GreetingController {
 	if(detectDuplicate(title, directorLN, "film") == false){
 	    jdbcTemplate.update("insert into films values (?, ?, ?, ?, ?, ?, ?)", title, directorFN, directorLN, actors, studio, medium, year);
 	}
-	return "redirect:biblio";
+	return "redirect:/biblio";
     }
     
 
@@ -309,7 +314,7 @@ public class GreetingController {
 	if(detectDuplicate(presentation, speakerLN, "lecture") == false){
 	    jdbcTemplate.update("insert into lectures values (?, ?, ?, ?, ?, ?, ?, ?)", presentation, speakerFN, speakerLN, type, event, city, location, date);
 	}    
-	return "redirect:biblio";
+	return "redirect:/biblio";
     }
 
     //function used to check whether a proposed entry matches that of an entry currently in the database. used to keep duplicate information from being added into the database

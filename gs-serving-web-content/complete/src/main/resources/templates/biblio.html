@@ -32,15 +32,18 @@
       <li th:each="ent:${entries}"
 	  th:text="${ent.citation}"></li>
     </ol>
-    
+
     <h3>Delete</h3>
-    <form action="/deleteEntry">
-      authorLN <input type="text" authorLN="authorLN"/><br/>
-      title <input type="text" title="title"/><br/>
-      type <input type="text" media="type"/><br/>
+    <form action="./deleteEntry"><input type="Submit" value ="Delete An Entry"/>
+     </form>
+  <!--  <h3>Delete</h3>
+    <form action="./deleteEntry">
+      authorLN<input type="text" name="authorLN"/><br/>
+      title<input type="text" name="title"/><br/>
+      type<input type="text" name="type"/><br/>
       <input type="submit" value="Remove"/>
-    </form>
-    
+    </form>-->
+<!--    
     <h3>Search</h3>
     <form action="/searchEntry">
       lastName<input type="text" lastName="lastName"/><br/>
@@ -48,7 +51,7 @@
       type<input type="text" media="Media type"/><br/>
       <input type="submit" value="Search"/>
     </form>
-    
+    -->
   </body>
 </html>
 
