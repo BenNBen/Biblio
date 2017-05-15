@@ -154,24 +154,24 @@ public class GreetingController {
 	    if(entry.title.compareTo(title) == 0 && entry.lastName.compareTo(authorLN) == 0){
 		switch(type) {
                 case "lecture": if(entry instanceof LectureEntry){
-			jdbcTemplate.update("delete from lectures where presentation = ? and where speakerLastName = ?", authorLN, title);
+			jdbcTemplate.update("delete from lectures where presentation = ? and speakerLN = ?", title, authorLN);
 		    }
                 case "website": if(entry instanceof WebsiteEntry){
-			jdbcTemplate.update("delete from websites where article = ? and where authorLastName = ?", authorLN, title);
+			jdbcTemplate.update("delete from websites where article = ? and authorLN = ?", title, authorLN);
 		    }
                 case "book": if(entry instanceof BookEntry){
-			jdbcTemplate.update("delete from books where book = ? and where authorLastName = ?", authorLN, title);
+			jdbcTemplate.update("delete from books where title = ? and authorLN = ?", title, authorLN);
 		    }
                 case "film": if(entry instanceof FilmEntry){
-			jdbcTemplate.update("delete from films where film = ? and where directorLastName = ?", authorLN, title);
+			jdbcTemplate.update("delete from films where title = ? and directorLN = ?", title, authorLN);
 		    }
                 case "journal": if(entry instanceof JournalEntry){
-			jdbcTemplate.update("delete from journals where article = ? and where authorLastName = ?", authorLN, title);
+			jdbcTemplate.update("delete from journals where article = ? and authorLN = ?", title, authorLN);
 		    }
     		}
 	    }
 	}
-	return "redirect:biblio"; // back to the biblio view
+	return "redirect:/biblio"; // back to the biblio view
     }
 
 
